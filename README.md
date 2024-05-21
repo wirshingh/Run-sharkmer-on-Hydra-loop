@@ -94,3 +94,4 @@ done
 echo = `date` job $JOB_NAME done
 ```
 
+After running sharmer it is a good idea to delete the very large unzipped reads files from Hydra to save space.
