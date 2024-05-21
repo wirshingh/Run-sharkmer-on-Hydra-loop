@@ -5,7 +5,7 @@ All reads files should be unzipped. The commnand gunzip can be used. The unzippe
  be large. In Hydra, navigate to the directory where the read files are located and run this job. 
  The path to the raw reads can be changed if running from a different directory.
  
- '''
+ ```
  # /bin/sh
 # ----------------Parameters---------------------- #
 #$ -S /bin/sh
@@ -26,4 +26,4 @@ echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
 gunzip *gz
 #
 echo = `date` job $JOB_NAME done
-'''
+```
