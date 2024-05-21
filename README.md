@@ -1,5 +1,8 @@
 # How to run sharkmer on Hydra using a loop
 
+Link to original sharkmer page
+https://github.com/caseywdunn/sharkmer
+
 ## Step 1
 ### Unzip the read files
 All reads files must be unzipped for sharkmer to run. The commnand gunzip can be used. The unzipped files will
