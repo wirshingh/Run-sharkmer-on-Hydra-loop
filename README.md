@@ -2,7 +2,7 @@
 
 ## Step 1
 ### Unzip the read files
-All reads files should be unzipped. The commnand gunzip can be used. The unzipped files will
+All reads files must be unzipped for sharkmer to run. The commnand gunzip can be used. The unzipped files will
  be large. In Hydra, navigate to the directory where the read files are located and run this job. 
  The path to the raw reads in the job can be changed if running from a different directory.
  
@@ -47,7 +47,9 @@ Example_Sample_ID_3
 
 ## Step 3
 ### Run the sharkmer job file in Hydra
-Modify the commands in the job file below and run it in same directory as the read files and the sharkmer_samples.txt file. NOTE - THE JOB FILE WILL NOT RUN IF THE COMMANDS ARE NOT MODIFIED FOR YOUR PROJECT.
+Modify the commands in the job file below and run it in same directory as the reads files and the sharkmer_samples.txt file. 
+
+NOTE - THE JOB FILE WILL NOT RUN IF THE COMMANDS ARE NOT MODIFIED FOR YOUR PROJECT.
 
 ### How to modify the sharkmer commands in the job below
 -- max-reads, this is usually set to 1000000 as recommended by the manual. More can be added if desired.
@@ -57,7 +59,7 @@ Modify the commands in the job file below and run it in same directory as the re
 
 -o, output directories will be created for each sample ID and end with "sharkmer_output". This can be left alone or modified if desired.
 
---pcr, for this command enter the forward and reverse primers sequences, the expected length of the PCR sequence (overestimate the length), and the name of the primer set
+--pcr, for this command enter the forward and reverse primers sequences, the expected length of the PCR sequence (overestimate the length), and the name of the primer set.
 #### Note
 Several primer pairs can be run at the same time. Simply add another line with the command --pcr and add the appropriate primer information.
 
