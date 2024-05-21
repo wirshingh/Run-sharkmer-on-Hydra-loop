@@ -1,6 +1,7 @@
 # How to run sharkmer on Hydra using a loop
 
 ## Step 1
+### Unzip the read files
 All reads files should be unzipped. The commnand gunzip can be used. The unzipped files will
  be large. In Hydra, navigate to the directory where the read files are located and run this job. 
  The path to the raw reads in the job can be changed if running from a different directory.
