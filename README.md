@@ -46,7 +46,7 @@ Example_Sample_ID_3
  The job file below can also be modified to match your reads file names.
 
 ## Step 3
-### Run the sharkmer job file in Hydra
+### Run the sharkmer job file on Hydra
 Modify the commands in the job file below and run it in same directory as the reads files and the sharkmer_samples.txt file. 
 
 NOTE - THE JOB FILE WILL NOT RUN IF THE COMMANDS ARE NOT MODIFIED FOR YOUR PROJECT.
