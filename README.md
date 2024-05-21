@@ -58,9 +58,9 @@ Modify the commands in the job file below and run it in same directory as the re
 -o, output directories will be created for each sample ID and end with "sharkmer_output". This can be left alone or modified if desired.
 
 --pcr, for this command enter the forward and reverse primers sequences, the expected length of the PCR sequence (overestimate the length), and the name of the primer set
-
 #### Note
-Several primer pairs can be run at the same time. Simple add another --pcr command to the job file with the appropriate primer information
+Several primer pairs can be run at the same time. Simply add another line with the command --pcr and add the appropriate primer information.
+
 
 ```
 # /bin/sh
