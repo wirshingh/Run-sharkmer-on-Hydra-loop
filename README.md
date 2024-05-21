@@ -53,9 +53,9 @@ Modify the commands in the job file below and run it in same directory as the re
 -- max-reads, this is usually set to 1000000 as recommended by the manual. More can be added if desired.
 
 
--s, this commnd has the variable ${SAMPLE} which will be each sample ID name listed in the "sharkmer_samples.txt" file.
+-s, this commnd has the variable ${SAMPLE} which will be each sample ID name listed in the "sharkmer_samples.txt" file. This command can be left alone.
 
--o, output directories will be created for each sample ID and end with "sharkmer_output". This can be modified if desired.
+-o, output directories will be created for each sample ID and end with "sharkmer_output". This can be left alone or modified if desired.
 
 --pcr, for this command enter the forward and reverse primers sequences, the expected length of the PCR sequence (overestimate the length), and the name of the primer set
 
@@ -85,7 +85,7 @@ do
  sharkmer \
  --max-reads 1000000 \
  -s ${SAMPLE} -o ${SAMPLE}_sharkmer_output/ \
- --pcr "forward_primer_sequence, reverse_primer_sequence, expected length, name of primer" \
+ --pcr "forward_primer_sequence, reverse_primer_sequence, expected_length, name_of_primer" \
  ./${SAMPLE}_R1_PE_trimmed.fastq ./${SAMPLE}_R2_PE_trimmed.fastq 
 done 
 #
