@@ -52,8 +52,6 @@ Example_Sample_ID_3
 ### Run the sharkmer job file on Hydra
 Modify the commands in the job file below and run it in same directory as the reads files and the sharkmer_samples.txt file. 
 
-NOTE - THE JOB FILE WILL NOT RUN IF THE COMMANDS ARE NOT MODIFIED FOR YOUR PROJECT.
-
 ### How to modify the sharkmer commands in the job below
 -- max-reads, this is usually set to 1000000 as recommended by the manual. More can be added if desired.
 
