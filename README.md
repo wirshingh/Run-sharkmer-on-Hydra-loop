@@ -58,7 +58,7 @@ Modify the commands in the job file below and run it in same directory as the re
 
 -s, this commnd has the variable ${SAMPLE} which will be each sample ID name listed in the "sharkmer_samples.txt" file. This command can be left alone.
 
--o, output directories will be created for each sample ID and end with "sharkmer_output". This can be left alone or modified if desired.
+-o, output directories will be created for each sample ID and end with "_sharkmer_output". This can be left alone or modified if desired.
 
 --pcr, for this command enter the forward and reverse primers sequences, the expected length of the PCR sequence (overestimate the length), and the name of the primer set.
 #### Note
