@@ -50,7 +50,8 @@ Example_Sample_ID_3
 
 ## Step 3
 ### Run the sharkmer job file on Hydra
-Modify the commands in the job file below and run it in same directory as the reads files and the sharkmer_samples.txt file. 
+Modify the commands in the job file below and run it in same directory as the unzipped reads files and the "sharkmer_samples.txt" file. 
+Note - Paths in the job file can also be changed to desired directories.
 
 ### How to modify the sharkmer commands in the job below
 -- max-reads, this is usually set to 1000000 as recommended by the manual. More can be added if desired.
