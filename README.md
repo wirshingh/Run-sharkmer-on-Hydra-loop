@@ -44,9 +44,9 @@ Example_Sample_ID_2
 Example_Sample_ID_3
 ```
 
- 4. The reads files should end with "_R1_PE_trimmed.fastq" and "_R2_PE_trimmed.fastq" after 
+ 4. The reads files should also end with "_R1_PE_trimmed.fastq" and "_R2_PE_trimmed.fastq" after 
  the unique sample name for the forward and reverse reads (R1 and R2).
- The job file below can also be modified to match your reads file names.
+ The job file below can also be modified to match your reads file names if desired.
 
 ## Step 3
 ### Run the sharkmer job file on Hydra
