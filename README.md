@@ -34,7 +34,7 @@ echo = `date` job $JOB_NAME done
 ## Step 2
  ### Preparing your files
  
- 1. For each read file include a unique sample ID. 
+ 1. For each unzipped read file include a unique sample ID at the beginning of the file name. 
  2. Create a text file called "sharkmer_samples.txt" with each unique sample ID from step 1 in a
  column, one sample ID per line.
 
