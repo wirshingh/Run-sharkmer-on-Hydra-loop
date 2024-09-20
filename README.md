@@ -5,12 +5,14 @@ https://github.com/caseywdunn/sharkmer
 
 ## Step 1
 ### Unzip the read files
-All reads files must be unzipped for sharkmer to run. The commnand gunzip can be used. The unzipped files will
- be large. In Hydra, navigate to the directory where the read files are located and run this job. 
- The path to the raw reads in the job can be changed if running from a different directory.
- 
+Sharkmer reqpuires unzipped files. The normally-used "fastq.gz" files will need to be unzipped. The gunzip command will be used in this step to uncompress the forward and reverse read files (R1 and R2).
+
+Save the following script as "unzip_reads.job" to the directory where the forward and reverse "fastq.gz" read files are located and run the job (qsub unzip_reads.job). 
+This script will copy the compressed forward and revese read files into a new directory named "unzipped_reads", and convert them to uncompressed ".fastq" files. 
+#### Note: The uncompressed files will be large.
+
  ```
- # /bin/sh
+# /bin/sh
 # ----------------Parameters---------------------- #
 #$ -S /bin/sh
 #$ -pe mthread 2
@@ -27,44 +29,31 @@ All reads files must be unzipped for sharkmer to run. The commnand gunzip can be
 #
 echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
 #
-gunzip *gz
+mkdir -p unzipped_reads
+cp *.gz ./unzipped_reads
+cd ./unzipped_reads
+gunzip *.gz
 #
 echo = `date` job $JOB_NAME done
+
 ```
 ## Step 2
- ### Preparing your files
- 
- 1. For each sample create a unique sample ID (This ID should be at the beginning of the file names for the unzipped read files for each sample). 
- 2. Create a text file called "sharkmer_samples.txt" with each of the unique sample IDs (one per sample) from step 1 in a
- column, one sample ID per line.
+ ### Run Sharkmer on Hydra using a loop
+For this script to work, the forward and reverse uncomporessed read files should end with "_R1_PE_trimmed.fastq" and "_R2_PE_trimmed.fastq". Alternatively, the job file below can also be modified to reflect your file names. 
+Save the job file below as "sharkmer_loop.job". Run the job in same directory as Step 1 (qsub sharkmer_loop.job).
 
-```
-Example_Sample_ID_1
-Example_Sample_ID_2
-Example_Sample_ID_3
-```
-
- 4. The reads files should also end with "_R1_PE_trimmed.fastq" and "_R2_PE_trimmed.fastq" after 
- the unique sample name for the forward and reverse reads (R1 and R2).
- Or, the job file below can also be modified to match your reads file names after the sample IDs if desired.
-
-## Step 3
-### Run the sharkmer job file on Hydra
-Modify the commands in the job file below and run it in same directory as the unzipped reads files and the "sharkmer_samples.txt" file. 
-NOTE - Paths in the job file can also be changed to desired directories.
-
-### How to modify the sharkmer commands in the job below
+### How to modify the sharkmer commands
 -- max-reads, this is usually set to 1000000 as recommended by the manual. More can be added if desired.
 
+-s, this commnd has the variable ${SAMPLENAME} and is the Sample ID for that sample. This command can be left alone.
 
--s, this commnd has the variable ${SAMPLE} which will be each sample ID name listed in the "sharkmer_samples.txt" file. This command can be left alone.
+-o, output directories will be created for each sample ID and end with "_sharkmer_output".
 
--o, output directories will be created for each sample ID and end with "_sharkmer_output". This can be left alone or modified if desired.
-
---pcr, for this command enter the forward and reverse primers sequences, the expected length of the PCR sequence (overestimate the length), and the name of the primer set. For example, --pcr "GACTGTTTACCAAAAACATA,AATTCAACATCGAGG,1000,16s" 
+--pcr, enter the forward and reverse primers sequences, the expected length of the PCR sequence (overestimate the length), and the name of the primer set. There should be no spaces. For example, --pcr "GACTGTTTACCAAAAACATA,AATTCAACATCGAGG,1000,16s" 
 
 NOTE - Several primer pairs can be run at the same time. Simply add another line with the command --pcr and add the appropriate primer information.
 
+After running sharkmer it is a good idea to delete the directory with the (very large) unzipped read files from Hydra to save space.
 
 ```
 # /bin/sh
@@ -79,21 +68,23 @@ NOTE - Several primer pairs can be run at the same time. Simply add another line
 #$ -o sharkmer.log
 #
 # ----------------Modules------------------------- #
-  module load bio/sharkmer/0.2.0_93ee045
+  module load bio/sharkmer/6f393f4
 # ----------------Your Commands------------------- #
 #
 echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
 #
-cat ./sharkmer_samples.txt | while read SAMPLE 
+cd ./unzipped_reads
+for GETFILENAME in ./*_R1_PE_trimmed.fastq
 do 
+SAMPLENAME=$(basename "$GETFILENAME" _R1_PE_trimmed.fastq)
  sharkmer \
  --max-reads 1000000 \
- -s ${SAMPLE} -o ${SAMPLE}_sharkmer_output/ \
- --pcr "forward_primer_sequence, reverse_primer_sequence, expected_length, name_of_primer" \
- ./${SAMPLE}_R1_PE_trimmed.fastq ./${SAMPLE}_R2_PE_trimmed.fastq 
+ -s ${SAMPLENAME} -o ${SAMPLENAME}_sharkmer_output/ \
+ --pcr "forward_primer_sequence,reverse_primer_sequence,expected_length,name_of_primer" \
+ ./${SAMPLENAME}_R1_PE_trimmed.fastq ./${SAMPLENAME}_R2_PE_trimmed.fastq 
 done 
+mkdir -p ../sharkmer_results
+mv *_sharkmer_output ../sharkmer_results
 #
 echo = `date` job $JOB_NAME done
 ```
-
-After running sharmer it is a good idea to delete the very large unzipped reads files from Hydra to save space.
