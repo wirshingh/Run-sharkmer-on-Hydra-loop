@@ -8,7 +8,7 @@ https://github.com/caseywdunn/sharkmer
 Sharkmer reqpuires unzipped files. The normally-used "fastq.gz" files will need to be unzipped. The gunzip command will be used in this step to uncompress the forward and reverse read files (R1 and R2).
 
 Save the following script as "unzip_reads.job" to the directory where the R1 and R2 "fastq.gz" read files are located and run the job (qsub unzip_reads.job). 
-This script will copy the compressed forward and revese read files into a new directory named "unzipped_reads", and convert them to uncompressed ".fastq" files. 
+This script will copy the compressed R1 and R2 read files into a new directory named "unzipped_reads", and convert them to uncompressed ".fastq" files. 
 #### Note: The uncompressed files will be large.
 
  ```
