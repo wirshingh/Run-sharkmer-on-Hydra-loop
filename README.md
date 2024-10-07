@@ -53,7 +53,7 @@ Save the job file below as "sharkmer_loop.job". Run the job in same directory as
 
 NOTE - Several primer pairs can be run at the same time. Simply add another line with the command --pcr and add the appropriate primer information.
 
-After running sharkmer it is a good idea to delete the directory with the (very large) unzipped read files from Hydra to save space.
+#### After running sharkmer it is a good idea to delete the directory with the (very large) unzipped read files from Hydra to save space.
 
 ```
 # /bin/sh
